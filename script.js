@@ -19,7 +19,7 @@ function generatePassword() {
  if( passwordLength  <8 || passwordLength >128) {
      alert("Password must be within 8 and 128 characters.");
      location.reload();
- };
+ } else {
  var passwordLowercase = prompt("Does the password require lowercase characters? yes or no.");
  var passwordUppercase = prompt("Does the password require uppercase characters? yes or no.");
  var passwordNumeric = prompt("Does the password require numeric characters? yes or no.");
@@ -30,9 +30,39 @@ function generatePassword() {
  var uppercase = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
  var numeric = "0123456789"
  var special = "!#$%&'()*+,-./:;<=>?@[\]^_`{|}~"
+ var fullstringPassword = ""
+ }
+ //create if statments for the prompts 
+ // calls strings from criteria variables if "yes"
+ if (passwordLowercase === "yes") {
+   fullstringPassword += lowercase
+ }
+ if (passwordUppercase === "yes") {
+   fullstringPassword += uppercase
+ }
+ if (passwordNumeric === "yes"){
+   fullstringPassword += numeric
+ }
+ if (passwordSpecial === "yes"){
+   fullstringPassword += special
+ }
+ if (fullstringPassword === ""){
+   alert("Please provide at least one criteria");
+   location.reload();
+ }
 
- 
+ //I need to generate a password with the fullstring accepting all criteria\
+ // use math to randomize the password
+ var generatedSecurePass = ""
+ var i;
+ for (var i = 0; i < passwordLength; i++) {
+  generatedSecurePass += fullstringPassword.charAt(Math.floor(Math.random() * fullstringPassword.length));
+ } 
+ return generatedSecurePass
+
 }
+
+//create if statements to 
 
 //create prompts to choose length between 8 - 128 characters
 // prompt to determine character types such as lowercase, uppercase, numeric, and/or special characters
